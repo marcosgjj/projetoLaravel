@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+<<<<<<< HEAD
 Route::get('/index',[HomeController::class, 'index']);
 
+=======
+Route::get('/index', [HomeController::class, 'index']);
+>>>>>>> 25bac72969c37c314d2b3458dd6ad5bb993995ce
