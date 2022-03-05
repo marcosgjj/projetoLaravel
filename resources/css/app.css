@@ -1,0 +1,63 @@
+.menu {
+    list-style-type: none;
+    overflow-x: hidden;
+    position: fixed;
+    height: 100%;
+    width: 210px;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    transition: 400ms;
+    font-family: alata;
+    box-shadow: 5px 0px 3px grey;
+    background-color: rgba(59, 130, 246, 0.5);
+}
+.item-menu{
+    text-decoration: none;
+    color: black;
+    display:table;
+    padding: 10px;
+    width:200px;
+    transition: 400ms;
+    /*   transition: 0.4s; */
+}
+.item-menu:hover{
+    padding-left: 15px;
+    border-left: 3px solid lightskyblue;
+    display: inline-block;
+    background-color: white;
+    font-weight: bold;
+}
+a.item-menu img {
+    margin: 0;
+    vertical-align: middle;
+}
+span {
+    margin: 0;
+    padding-left: 10px;
+    vertical-align: text-top;
+}
+.main {
+    transition: 400ms;
+    margin-left: 210px;
+}
+.btnMenu {
+    border: none;
+    padding: 3px 5px 1px 5px;
+    line-height: 1;
+    border-radius: 0.35rem;
+    background: transparent;
+    transition: 0.3s;
+}
+.btnMenu:focus {
+    font-size: 1.25rem;
+    text-decoration: none;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #92ADD1;
+}
+.menu::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
