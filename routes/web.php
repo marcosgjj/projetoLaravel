@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/index',[HomeController::class, 'index']);
 Route::get('/primeiroExercicio',[HomeController::class, 'primeiroExercicio']);
+Route::get('/cssIndex',[HomeController::class,'cssIndex']);
 
