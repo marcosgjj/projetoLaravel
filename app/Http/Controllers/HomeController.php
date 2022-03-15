@@ -18,8 +18,5 @@ class HomeController extends Controller
     {
         return view("exercicio1");
     }
-    public function cssIndex()
-    {
-        return view("index");
-    }
+
 }
