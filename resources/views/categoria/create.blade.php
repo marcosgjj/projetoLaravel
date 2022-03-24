@@ -2,7 +2,7 @@
     <x-slot name="header">
         Categorias
     </x-slot>
-    <div class="sm:ml-10 p-5 bg-white border-gray-300 max-w-7xl">
+    <div class="sm:ml-10 p-5 bg-green border-gray-300 max-w-7xl">
     <form action="{{route('categoria.store')}}" method="post">
         @csrf
         <div>

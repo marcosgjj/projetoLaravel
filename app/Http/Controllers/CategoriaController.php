@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -19,7 +20,10 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        #Recupera todas categorias e envia a view index
+        $categoria = Categoria::all();
+
+        return view('categoria.index', compact('categoria'));
     }
 
     /**
@@ -29,18 +33,28 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view ('categoria.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $categoria = new Categoria();
+            $dados = $request->only($categoria->getFillable());
+            Categoria::create($dados);
+            echo "Inserido com sucesso!";
+            return redirect()->action([CategoriaController::class, 'index']);
+
+        }
+        catch (\Exception $e){
+            echo "Erro ao inserir!";
+        }
     }
 
     /**
@@ -51,7 +65,7 @@ class CategoriaController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
