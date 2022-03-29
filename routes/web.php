@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\FuncionarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +18,17 @@ use Illuminate\Support\Facades\Route;
 */
 # Após feito a criação da Model e controller, a rota será feita dessa forma abaixo, evitando rotas manuais para cada comando.
 Route::resources([
-    'categoria' => \App\Http\Controllers\CategoriaController::class
+    'categoria' => CategoriaController::class
 ]);
-
+Route::resources([
+    'fornecedor' => FornecedorController::class
+]);
+Route::resources([
+    'produto' => ProdutoController::class
+]);
+Route::resources([
+    'funcionario' => FuncionarioController::class
+]);
 Route::get('/', function () {
     return view('welcome');
 });

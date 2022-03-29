@@ -1,24 +1,24 @@
 <x-app-layout>
 
     <x-slot name="header">
-        Todas as categorias
+        Todas as fornecedors
     </x-slot>
 
-       @if(isset($categoria))
+    @if(isset($fornecedor))
 
-           <form action="{{route("categoria.create")}}">
-               <x-button>
-               Criar
-               </x-button>
-           </form>
-        @foreach($categoria as $c)
+        <form action="{{route("fornecedor.create")}}">
+            <x-button>
+                Criar
+            </x-button>
+        </form>
+        @foreach($fornecedor as $c)
             <div>
                 {{$c->descricao}}
 
-                <a href="{{route('categoria.edit', $c->id)}}">
+                <a href="{{route('fornecedor.edit', $c->id)}}">
                     Alterar
                 </a>
-                <form action="{{route('categoria.destroy', $c->id)}}" method="POST">
+                <form action="{{route('fornecedor.destroy', $c->id)}}" method="POST">
                     @csrf
                     @Method("DELETE")
                     <div class="mt-5">
@@ -27,6 +27,6 @@
                 </form>
             </div>
         @endforeach
-       @endif
+    @endif
 
 </x-app-layout>
