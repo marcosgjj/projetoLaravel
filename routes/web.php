@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\CarrinhoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,9 @@ Route::resources([
 ]);
 Route::resources([
     'funcionario' => FuncionarioController::class
+]);
+Route::resources([
+    'carrinho' => CarrinhoController::class
 ]);
 Route::get('/', function () {
     return view('welcome');
