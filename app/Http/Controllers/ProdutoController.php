@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
+    public function __construct()
+    {
+        # garante o acesso dos methods apenas a usuário authenticado
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,10 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //
+        #Recupera todas produtos e envia a view index
+        $produto = Produto::all();
+
+        return view('produto.index', compact('produto'));
     }
 
     /**
@@ -23,18 +33,28 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+        return view ('produto.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $produto = new Produto();
+            $dados = $request->only($produto->getFillable());
+            Produto::create($dados);
+            echo "Inserido com sucesso!";
+            return redirect()->action([ProdutoController::class, 'index']);
+
+        }
+        catch (\Exception $e){
+            echo "Erro ao inserir!";
+        }
     }
 
     /**
@@ -56,7 +76,8 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $produto = Produto::findOrFail($id);
+        return view("produto.edit", compact("produto"));
     }
 
     /**
@@ -68,7 +89,15 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $produto = new Produto();
+            $dados = $request->only($produto ->getFillable());
+            Produto::whereId($id)->update($dados);
+            return redirect()->action([ProdutoController::class, 'index']);
+        }
+        catch (\Exception $e){
+            echo "Erro ao alterar:".$e->getMessage();
+        }
     }
 
     /**
@@ -79,6 +108,13 @@ class ProdutoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            Produto::destroy($id);
+            return redirect()->action([ProdutoController::class, 'index']);
+        }
+        catch (\Exception $e){
+            echo "Erro ao excluir"+$e->getMessage();
+        }
     }
+
 }

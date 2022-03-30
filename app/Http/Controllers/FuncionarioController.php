@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Funcionario;
 use Illuminate\Http\Request;
 
 class FuncionarioController extends Controller
 {
+    public function __construct()
+    {
+        # garante o acesso dos methods apenas a usuário authenticado
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,10 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        //
+        #Recupera todas funcionarios e envia a view index
+        $funcionario = Funcionario::all();
+
+        return view('funcionario.index', compact('funcionario'));
     }
 
     /**
@@ -23,18 +33,28 @@ class FuncionarioController extends Controller
      */
     public function create()
     {
-        //
+        return view ('funcionario.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $funcionario = new Funcionario();
+            $dados = $request->only($funcionario->getFillable());
+            Funcionario::create($dados);
+            echo "Inserido com sucesso!";
+            return redirect()->action([FuncionarioController::class, 'index']);
+
+        }
+        catch (\Exception $e){
+            echo "Erro ao inserir!";
+        }
     }
 
     /**
@@ -56,7 +76,8 @@ class FuncionarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $funcionario = Funcionario::findOrFail($id);
+        return view("funcionario.edit", compact("funcionario"));
     }
 
     /**
@@ -68,7 +89,15 @@ class FuncionarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $funcionario = new Funcionario();
+            $dados = $request->only($funcionario ->getFillable());
+            Funcionario::whereId($id)->update($dados);
+            return redirect()->action([FuncionarioController::class, 'index']);
+        }
+        catch (\Exception $e){
+            echo "Erro ao alterar:".$e->getMessage();
+        }
     }
 
     /**
@@ -79,6 +108,13 @@ class FuncionarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            Funcionario::destroy($id);
+            return redirect()->action([FuncionarioController::class, 'index']);
+        }
+        catch (\Exception $e){
+            echo "Erro ao excluir"+$e->getMessage();
+        }
     }
+
 }
