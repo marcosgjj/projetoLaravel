@@ -10,7 +10,6 @@ class Funcionario extends Model
     use HasFactory;
 
     protected $fillable=[
-        'matricula',
         'nome',
         'telefone',
         'endereco',

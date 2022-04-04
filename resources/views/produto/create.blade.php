@@ -10,8 +10,16 @@
                     <form action="{{route('produto.store')}}" method="post">
                         @csrf
                         <div>
-                            <x-label>Informe a descrição:</x-label>
-                            <x-input name="descricao" class="block mt-1 w-full"/>
+                            <x-label>Informe o nome:</x-label>
+                            <x-input name="nome" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Preço:</x-label>
+                            <x-input name="preco" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Local de estoque:</x-label>
+                            <x-input name="local" class="block mt-1 w-full"/>
                         </div>
                         <div class="mt-5">
                             <x-button>Salvar</x-button>

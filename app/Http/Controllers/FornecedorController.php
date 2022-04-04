@@ -21,9 +21,9 @@ class FornecedorController extends Controller
     public function index()
     {
         #Recupera todas fornecedors e envia a view index
-        $fornecedor = Fornecedor::all();
+        $fornecedores = Fornecedor::all();
 
-        return view('fornecedor.index', compact('fornecedor'));
+        return view('fornecedor.index', compact('fornecedores'));
     }
 
     /**

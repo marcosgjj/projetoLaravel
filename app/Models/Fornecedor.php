@@ -18,7 +18,5 @@ class Fornecedor extends Model
         'cep',
         'telefone',
         'nomeFantasia',
-        'produtos',
-        'quantidade'
     ];
 }

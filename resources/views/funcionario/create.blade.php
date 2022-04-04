@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        Funcionarios
+        Funcionários
     </x-slot>
 
     <div class="py-12">
@@ -10,8 +10,20 @@
                     <form action="{{route('funcionario.store')}}" method="post">
                         @csrf
                         <div>
-                            <x-label>Informe a descrição:</x-label>
+                            <x-label>Informe a nome:</x-label>
                             <x-input name="nome" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Telefone:</x-label>
+                            <x-input name="telefone" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Endereço:</x-label>
+                            <x-input name="endereco" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>CPF:</x-label>
+                            <x-input name="cpf" class="block mt-1 w-full"/>
                         </div>
                         <div class="mt-5">
                             <x-button>Salvar</x-button>
