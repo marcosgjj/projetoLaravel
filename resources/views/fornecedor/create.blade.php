@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        Fornecedores
+        <h1>Fornecedores</h1>
     </x-slot>
 
     <div class="py-12">
@@ -10,8 +10,40 @@
                     <form action="{{route('fornecedor.store')}}" method="post">
                         @csrf
                         <div>
-                            <x-label>Informe a descrição:</x-label>
-                            <x-input name="descricao" class="block mt-1 w-full"/>
+                            <x-label>Nome Fantasia:</x-label>
+                            <x-input name="nomeFantasia" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Razão Social:</x-label>
+                            <x-input name="razao_social" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>CNPJ:</x-label>
+                            <x-input name="cnpj" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Telefone:</x-label>
+                            <x-input name="telefone" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Nome do contato:</x-label>
+                            <x-input name="contato" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Endereço:</x-label>
+                            <x-input name="endereco" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Bairro:</x-label>
+                            <x-input name="bairro" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Cidade:</x-label>
+                            <x-input name="cidade" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>CEP:</x-label>
+                            <x-input name="cep" class="block mt-1 w-full"/>
                         </div>
                         <div class="mt-5">
                             <x-button>Salvar</x-button>

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        Editar Fornecedor
+        <h1> Editar Fornecedor </h1>
     </x-slot>
 
     <div class="py-12">
@@ -11,9 +11,30 @@
                         @csrf
                         @method("PATCH")
                         <div>
-                            <x-label>Informe a descrição:</x-label>
-                            <x-input name="descricao" value="{{$fornecedor->descricao}}" class="block mt-1 w-full"/>
+                            <x-label>Alterar nome fantasia:</x-label>
+                            <x-input name="descricao" value="{{$fornecedor->nomeFantasia}}" class="block mt-1 w-full"/>
                         </div>
+                        <div>
+                            <x-label>CNPJ:</x-label>
+                            <x-input name="cnpj" value="{{$fornecedor->cnpj}}"
+                                     class="block mt-1 w-full" disabled/>
+                        </div>
+                        <div>
+                            <x-label>Razão Social:</x-label>
+                            <x-input name="nomeEmpresa" value="{{$fornecedor->razao_social}}"
+                                     class="block mt-1 w-full" disabled/>
+                        </div>
+                        <div>
+                            <x-label>Nome do contato:</x-label>
+                            <x-input name="contato" value="{{$fornecedor->contato}}"
+                                     class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Número de contato:</x-label>
+                            <x-input name="telefone" value="{{$fornecedor->telefone}}"
+                                     class="block mt-1 w-full"/>
+                        </div>
+
                         <div class="mt-5">
                             <x-button>Alterar</x-button>
                         </div>

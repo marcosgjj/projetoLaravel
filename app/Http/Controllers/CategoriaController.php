@@ -21,9 +21,9 @@ class CategoriaController extends Controller
     public function index()
     {
         #Recupera todas categorias e envia a view index
-        $categoria = Categoria::all();
+        $categorias = Categoria::all();
 
-        return view('categoria.index', compact('categoria'));
+        return view('categoria.index', compact('categorias'));
     }
 
     /**

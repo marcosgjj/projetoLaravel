@@ -12,7 +12,15 @@
                         @method("PATCH")
                         <div>
                             <x-label>Informe a descrição:</x-label>
-                            <x-input name="descricao" value="{{$produto->descricao}}" class="block mt-1 w-full"/>
+                            <x-input name="nome" value="{{$produto->nome}}" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Preço:</x-label>
+                            <x-input name="preco" value="{{$produto->preco}}" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Estoque:</x-label>
+                            <x-input name="local" value="{{$produto->local}}" class="block mt-1 w-full"/>
                         </div>
                         <div class="mt-5">
                             <x-button>Alterar</x-button>

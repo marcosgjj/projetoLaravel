@@ -21,9 +21,9 @@ class FuncionarioController extends Controller
     public function index()
     {
         #Recupera todas funcionarios e envia a view index
-        $funcionario = Funcionario::all();
+        $funcionarios = Funcionario::all();
 
-        return view('funcionario.index', compact('funcionario'));
+        return view('funcionario.index', compact('funcionarios'));
     }
 
     /**

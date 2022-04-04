@@ -21,9 +21,9 @@ class ProdutoController extends Controller
     public function index()
     {
         #Recupera todas produtos e envia a view index
-        $produto = Produto::all();
+        $produtos = Produto::all();
 
-        return view('produto.index', compact('produto'));
+        return view('produto.index', compact('produtos'));
     }
 
     /**

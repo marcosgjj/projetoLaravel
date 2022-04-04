@@ -11,8 +11,20 @@
                         @csrf
                         @method("PATCH")
                         <div>
-                            <x-label>Informe a descrição:</x-label>
+                            <x-label>Informe o nome:</x-label>
                             <x-input name="nome" value="{{$funcionario->nome}}" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>CPF:</x-label>
+                            <x-input name="cpf" value="{{$funcionario->cpf}}" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Telefone:</x-label>
+                            <x-input name="telefone" value="{{$funcionario->telefone}}" class="block mt-1 w-full"/>
+                        </div>
+                        <div>
+                            <x-label>Endereço:</x-label>
+                            <x-input name="endereco" value="{{$funcionario->endereco}}" class="block mt-1 w-full"/>
                         </div>
                         <div class="mt-5">
                             <x-button>Alterar</x-button>
