@@ -30,7 +30,7 @@
                                     <td class="px-6 py-4 whitespace-no-wrap border-b text-gray-900 border-gray-500 text-sm
                                             leading-5">{{$p->nome}}</td>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b text-gray-900 border-gray-500 text-sm
-                                            leading-5">{{$p->preco}}</td>
+                                            leading-5">R$ {{$p->preco}}</td>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b text-gray-900 border-gray-500 text-sm
                                             leading-5">{{$p->local}}</td>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-sm leading-5 text-right ">

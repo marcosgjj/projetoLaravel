@@ -24,8 +24,6 @@ class CreateFornecedorsTable extends Migration
             $table->string('cep');
             $table->string('telefone');
             $table->string('nomeFantasia');
-            $table->string('produtos');
-            $table->integer('quantidade');
 
             $table->timestamps();
         });
