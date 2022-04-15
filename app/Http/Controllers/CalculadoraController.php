@@ -33,19 +33,6 @@ class CalculadoraController extends Controller
      */
     public function create()
     {
-        $v1 = $_POST['v1'];
-        $v2 = $_POST['v2'];
-        $op = $_POST['op'];
-        $r = $_POST['r'];
-        if($op == "+"){
-            $r = $v1 + $v2;
-        }else if($op == "-"){
-            $r = $v1 - $v2;
-        }else if($op == "*"){
-            $r = $v1 * $v2;
-        }else if($op == "/"){
-            $r = $v1 / $v2;
-        }
         return view ('calculadora.create');
     }
 
@@ -62,7 +49,7 @@ class CalculadoraController extends Controller
             $dados = $request->only($calculadora->getFillable());
             Calculadora::create($dados);
             echo "Inserido com sucesso!";
-            return redirect()->action([CalculadoraController::class, 'edit']);
+            return redirect()->action([CalculadoraController::class, 'index']);
 
         }
         catch (\Exception $e){
@@ -90,7 +77,6 @@ class CalculadoraController extends Controller
     public function edit($id)
     {
         $calculadora = Calculadora::findOrFail($id);
-
         return view("calculadora.edit", compact("calculadora"));
     }
 
@@ -106,21 +92,8 @@ class CalculadoraController extends Controller
         try{
             $calculadora = new Calculadora();
             $dados = $request->only($calculadora ->getFillable());
-            $v1 = $_POST['v1'];
-            $v2 = $_POST['v2'];
-            $op = $_POST['op'];
-            $r = $_POST['r'];
-            if($op == "+"){
-                $r = $v1 + $v2;
-            }else if($op == "-"){
-                $r = $v1 - $v2;
-            }else if($op == "*"){
-                $r = $v1 * $v2;
-            }else if($op == "/"){
-                $r = $v1 / $v2;
-            }
             Calculadora::whereId($id)->update($dados);
-            return redirect()->action([CalculadoraController::class, 'edit']);
+            return redirect()->action([CalculadoraController::class, 'index']);
         }
         catch (\Exception $e){
             echo "Erro ao alterar:".$e->getMessage();
