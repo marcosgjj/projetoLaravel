@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Fornecedor;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,9 +19,12 @@ class CreateProdutosTable extends Migration
             $table->string('nome');
             $table->decimal('preco');
             $table->string('local');
+            $table->unsignedBigInteger('fornecedor_id');
+            $table->unsignedBigInteger('categoria_id');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

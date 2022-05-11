@@ -11,6 +11,15 @@ class Produto extends Model
     protected $fillable = [
         'nome',
         'preco',
-        'local'
+        'local',
+        'fornecedor_id',
+        'categoria_id'
     ];
+
+    public function fornecedor(){
+        return $this->belongsTo(Fornecedor::class);
+    }
+    public function categoria(){
+        return $this->belongsTo(Categoria::class);
+    }
 }

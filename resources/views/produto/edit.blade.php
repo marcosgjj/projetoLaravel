@@ -22,6 +22,27 @@
                             <x-label>Estoque:</x-label>
                             <x-input name="local" value="{{$produto->local}}" class="block mt-1 w-full"/>
                         </div>
+                        <div>
+                            <x-label>Selecione o fornecedor:</x-label>
+                            <select name="fornecedor_id">
+                                @foreach($fornecedores as $f)
+                                    <option value="{{$f->id}}"
+                                    @if($f->id == $produto->fornecedor->id)
+                                    selected
+                                    @endif
+                                    >{{$f->razao_social}}</option>
+                                @endforeach
+                            </select><x-label>Selecione o fornecedor:</x-label>
+                            <select name="categoria_id">
+                                @foreach($categorias as $c)
+                                    <option value="{{$c->id}}"
+                                    @if($c->id == $produto->categoria->id)
+                                    selected
+                                    @endif
+                                    >{{$c->descricao}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="mt-5">
                             <x-button>Alterar</x-button>
                         </div>

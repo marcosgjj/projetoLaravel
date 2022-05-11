@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
+use App\Models\Fornecedor;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -33,7 +35,10 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        return view ('produto.create');
+        $fornecedores = Fornecedor::all();
+        $categorias = Categoria::all();
+        return view ('produto.create', compact(
+            'fornecedores', 'categorias'));
     }
 
     /**
@@ -49,11 +54,13 @@ class ProdutoController extends Controller
             $dados = $request->only($produto->getFillable());
             Produto::create($dados);
             echo "Inserido com sucesso!";
-            return redirect()->action([ProdutoController::class, 'index']);
-
+            return redirect()->action([ProdutoController::class, 'index'])
+                ->with("resposta", "Registro inserido");
         }
         catch (\Exception $e){
-            echo "Erro ao inserir!";
+            return redirect()->action(
+                [ProdutoController::class, 'index'])
+                ->with("resposta", "Erro ao inserir!");
         }
     }
 
@@ -76,8 +83,10 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
+        $fornecedores = Fornecedor::all();
+        $categorias = Categoria::all();
         $produto = Produto::findOrFail($id);
-        return view("produto.edit", compact("produto"));
+        return view("produto.edit", compact("fornecedores", "categorias"));
     }
 
     /**
@@ -91,12 +100,14 @@ class ProdutoController extends Controller
     {
         try{
             $produto = new Produto();
-            $dados = $request->only($produto ->getFillable());
+            $dados = $request->only($produto->getFillable());
             Produto::whereId($id)->update($dados);
-            return redirect()->action([ProdutoController::class, 'index']);
+            return redirect()->action([ProdutoController::class, 'index'])
+                ->with("resposta", "Registro alterado");
         }
         catch (\Exception $e){
-            echo "Erro ao alterar:".$e->getMessage();
+            return redirect()->action([ProdutoController::class,"index"])
+                ->with("resposta", "Erro ao alterar");
         }
     }
 
@@ -110,10 +121,12 @@ class ProdutoController extends Controller
     {
         try{
             Produto::destroy($id);
-            return redirect()->action([ProdutoController::class, 'index']);
+            return redirect()->action([ProdutoController::class, 'index'])
+                ->with("resposta", "Registro excluido!");
         }
         catch (\Exception $e){
-            echo "Erro ao excluir"+$e->getMessage();
+            return redirect()->action([ProdutoController::class, 'index'])
+                ->with("resposta", "Erro ao excluir!");
         }
     }
 
