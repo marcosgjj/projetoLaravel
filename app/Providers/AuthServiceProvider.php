@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use illuminate\Auth\Access\Response;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,6 +27,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+
+        //local para definir o gate
+        Gate::define("acesso-adminstrador", function (User $user){
+            return $user->role == "Administrador"
+                ? Response::allow()
+                : Response::deny("Você não tem autorização de acesso!");
+        });
         //
     }
 }
