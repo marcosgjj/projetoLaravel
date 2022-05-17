@@ -13,6 +13,9 @@ class Carrinho extends Model
         'bandeiraCartao',
         'qtdProduto',
         'metodoPagamento',
-        'totalAPagar'
+        'totalAPagar',
+        'produto_id',
+
+
     ];
 }

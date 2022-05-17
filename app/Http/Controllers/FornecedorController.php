@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fornecedor;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
@@ -21,6 +22,7 @@ class FornecedorController extends Controller
     public function index()
     {
         #Recupera todas fornecedors e envia a view index
+        Gate::authorize("acesso-administrador");
         $fornecedores = Fornecedor::all();
 
         return view('fornecedor.index', compact('fornecedores'));
@@ -33,6 +35,7 @@ class FornecedorController extends Controller
      */
     public function create()
     {
+
         return view ('fornecedor.create');
     }
 

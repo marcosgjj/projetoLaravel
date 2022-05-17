@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Funcionario;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 
 class FuncionarioController extends Controller
@@ -21,6 +22,7 @@ class FuncionarioController extends Controller
     public function index()
     {
         #Recupera todas funcionarios e envia a view index
+        Gate::authorize("acesso-administrador");
         $funcionarios = Funcionario::all();
 
         return view('funcionario.index', compact('funcionarios'));

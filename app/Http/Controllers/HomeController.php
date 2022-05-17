@@ -4,6 +4,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,6 +13,7 @@ class HomeController extends Controller
     // In /routes/web.php add /index
     public function index()
     {
+        Gate::authorize("acesso-administrador");
         return view("welcome");
     }
     public function primeiroExercicio()

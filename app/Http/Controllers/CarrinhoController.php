@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrinho;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 
 class CarrinhoController extends Controller
@@ -21,6 +22,7 @@ class CarrinhoController extends Controller
     public function index()
     {
         #Recupera todas carrinhos e envia a view index
+        Gate::authorize("acesso-administrador");
         $carrinho = Carrinho::all();
 
         return view('carrinho.index', compact('carrinho'));

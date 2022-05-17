@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Fornecedor;
 use App\Models\Produto;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -23,6 +24,7 @@ class ProdutoController extends Controller
     public function index()
     {
         #Recupera todas produtos e envia a view index
+        Gate::authorize("acesso-administrador");
         $produtos = Produto::all();
 
         return view('produto.index', compact('produtos'));

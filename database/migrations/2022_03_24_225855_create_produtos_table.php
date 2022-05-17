@@ -21,6 +21,12 @@ class CreateProdutosTable extends Migration
             $table->string('local');
             $table->unsignedBigInteger('fornecedor_id');
             $table->unsignedBigInteger('categoria_id');
+            $table->foreign('categoria_id')
+                ->references('id')
+                ->on('categorias');
+            $table->foreign('fornecedor_id')
+                ->references('id')
+                ->on('fornecedors');
             $table->timestamps();
         });
     }
