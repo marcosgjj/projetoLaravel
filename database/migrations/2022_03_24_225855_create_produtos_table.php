@@ -19,14 +19,18 @@ class CreateProdutosTable extends Migration
             $table->string('nome');
             $table->decimal('preco');
             $table->string('local');
-            $table->unsignedBigInteger('fornecedor_id');
+
+
             $table->unsignedBigInteger('categoria_id');
             $table->foreign('categoria_id')
                 ->references('id')
                 ->on('categorias');
+
+            $table->unsignedBigInteger('fornecedor_id');
             $table->foreign('fornecedor_id')
                 ->references('id')
                 ->on('fornecedors');
+
             $table->timestamps();
         });
     }
