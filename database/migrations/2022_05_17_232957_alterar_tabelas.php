@@ -13,7 +13,9 @@ class AlterarTabelas extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('produto', function (Blueprint $table){
+            $table->integer('quantidade');
+    });
     }
 
     /**
@@ -23,6 +25,10 @@ class AlterarTabelas extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropColumns('fornecedors', function (Blueprint $table) {
+            $table->string('contato');
+            $table->string('bairro');
+        });
     }
 }
+

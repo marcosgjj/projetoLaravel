@@ -4,6 +4,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 
@@ -13,12 +14,16 @@ class HomeController extends Controller
     // In /routes/web.php add /index
     public function index()
     {
-        Gate::authorize("acesso-administrador");
-        return view("welcome");
+
+
+        $produtos = Produto::all();
+
+        return view("welcome", compact("produtos"));
     }
-    public function primeiroExercicio()
+    public function detalhe($id)
     {
-        return view("exercicio1");
+        $produto = Produto::findOrfail($id);
+        return view("produto", compact('produto'));
     }
 
 }

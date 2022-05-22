@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\CarrinhoController;
@@ -33,9 +34,15 @@ Route::resources([
 Route::resources([
     'carrinho' => CarrinhoController::class
 ]);
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get(
+    '/',
+    [HomeController::class,'index'
+]);
+
+Route::get(
+    "/detalhe/{id}",[HomeController::class, 'detalhe']
+);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
