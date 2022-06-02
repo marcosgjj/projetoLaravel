@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Produto extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'nome',
         'preco',
@@ -16,10 +17,13 @@ class Produto extends Model
         'categoria_id'
     ];
 
-    public function fornecedor(){
+    public function fornecedor()
+    {
         return $this->belongsTo(Fornecedor::class);
     }
-    public function categoria(){
+
+    public function categoria()
+    {
         return $this->belongsTo(Categoria::class);
     }
 }

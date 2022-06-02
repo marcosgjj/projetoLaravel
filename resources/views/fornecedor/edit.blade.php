@@ -25,12 +25,12 @@
                                      class="block mt-1 w-full" disabled/>
                         </div>
                         <div>
-                            <x-label>Nome do contato:</x-label>
-                            <x-input name="contato" value="{{$fornecedor->contato}}"
+                            <x-label>Cidade:</x-label>
+                            <x-input name="cidade" value="{{$fornecedor->cidade}}"
                                      class="block mt-1 w-full"/>
                         </div>
                         <div>
-                            <x-label>Número de contato:</x-label>
+                            <x-label>Telefone:</x-label>
                             <x-input name="telefone" value="{{$fornecedor->telefone}}"
                                      class="block mt-1 w-full"/>
                         </div>

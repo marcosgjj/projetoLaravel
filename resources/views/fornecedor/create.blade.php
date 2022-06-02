@@ -26,17 +26,10 @@
                             <x-input name="telefone" class="block mt-1 w-full"/>
                         </div>
                         <div>
-                            <x-label>Nome do contato:</x-label>
-                            <x-input name="contato" class="block mt-1 w-full"/>
-                        </div>
-                        <div>
                             <x-label>Endereço:</x-label>
                             <x-input name="endereco" class="block mt-1 w-full"/>
                         </div>
-                        <div>
-                            <x-label>Bairro:</x-label>
-                            <x-input name="bairro" class="block mt-1 w-full"/>
-                        </div>
+
                         <div>
                             <x-label>Cidade:</x-label>
                             <x-input name="cidade" class="block mt-1 w-full"/>

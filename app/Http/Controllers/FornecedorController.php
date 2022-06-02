@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fornecedor;
-use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class FornecedorController extends Controller
 {
@@ -24,8 +24,27 @@ class FornecedorController extends Controller
         #Recupera todas fornecedors e envia a view index
         Gate::authorize("acesso-administrador");
         $fornecedores = Fornecedor::all();
-
         return view('fornecedor.index', compact('fornecedores'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        try {
+            $fornecedor = new Fornecedor();
+            $dados = $request->only($fornecedor->getFillable());
+            Fornecedor::create($dados);
+            echo "Inserido com sucesso!";
+            return redirect()->action([FornecedorController::class, 'index']);
+
+        } catch (\Exception $e) {
+            return redirect()->action([FornecedorController::class, "index"])->with("resposta", "Erro ao inserir!");
+        }
     }
 
     /**
@@ -36,34 +55,13 @@ class FornecedorController extends Controller
     public function create()
     {
 
-        return view ('fornecedor.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        try{
-            $fornecedor = new Fornecedor();
-            $dados = $request->only($fornecedor->getFillable());
-            Fornecedor::create($dados);
-            echo "Inserido com sucesso!";
-            return redirect()->action([FornecedorController::class, 'index']);
-
-        }
-        catch (\Exception $e){
-            echo "Erro ao inserir!";
-        }
+        return view('fornecedor.create');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -74,7 +72,7 @@ class FornecedorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -86,37 +84,35 @@ class FornecedorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        try{
+        try {
             $fornecedor = new Fornecedor();
-            $dados = $request->only($fornecedor ->getFillable());
+            $dados = $request->only($fornecedor->getFillable());
             Fornecedor::whereId($id)->update($dados);
             return redirect()->action([FornecedorController::class, 'index']);
-        }
-        catch (\Exception $e){
-            echo "Erro ao alterar:".$e->getMessage();
+        } catch (\Exception $e) {
+            return redirect()->action([FornecedorController::class, "index"])->with("resposta", "Erro ao alterar!");
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        try{
+        try {
             Fornecedor::destroy($id);
             return redirect()->action([FornecedorController::class, 'index']);
-        }
-        catch (\Exception $e){
-            echo "Erro ao excluir"+$e->getMessage();
+        } catch (\Exception $e) {
+            return redirect()->action([FornecedorController::class, 'index'])->with("respost", "Erro ao excluir!");
         }
     }
 

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Fornecedor;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +19,6 @@ class CreateProdutosTable extends Migration
             $table->decimal('preco');
             $table->string('local');
 
-
             $table->unsignedBigInteger('categoria_id');
             $table->foreign('categoria_id')
                 ->references('id')
@@ -35,12 +33,12 @@ class CreateProdutosTable extends Migration
         });
     }
 
-
     /**
      * Reverse the migrations.
      *
      * @return void
      */
+
     public function down()
     {
         Schema::dropIfExists('produtos');

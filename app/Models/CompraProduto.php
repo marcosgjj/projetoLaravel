@@ -14,12 +14,15 @@ class CompraProduto extends Model
         'produto_id',
         'preco',
         'quantidade'
-        ];
+    ];
 
-    public function compra(){
+    public function compra()
+    {
         return $this->belongsTo(Compra::class);
     }
-    public function produto(){
+
+    public function produto()
+    {
         return $this->belongsTo(Produto::class);
     }
 }

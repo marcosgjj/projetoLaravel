@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Fornecedor;
 use App\Models\Produto;
-use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProdutoController extends Controller
 {
@@ -31,6 +31,28 @@ class ProdutoController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        try {
+            $produto = new Produto();
+            $dados = $request->only($produto->getFillable());
+            Produto::create($dados);
+            echo "Inserido com sucesso!";
+            return redirect()->action([ProdutoController::class, 'index'])
+                ->with("resposta", "Registro inserido");
+        } catch (\Exception $e) {
+            return redirect()->action(
+                [ProdutoController::class, 'index'])
+                ->with("resposta", "Erro ao inserir!");
+        }
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -39,37 +61,14 @@ class ProdutoController extends Controller
     {
         $fornecedores = Fornecedor::all();
         $categorias = Categoria::all();
-        return view ('produto.create', compact(
+        return view('produto.create', compact(
             'fornecedores', 'categorias'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        try{
-            $produto = new Produto();
-            $dados = $request->only($produto->getFillable());
-            Produto::create($dados);
-            echo "Inserido com sucesso!";
-            return redirect()->action([ProdutoController::class, 'index'])
-                ->with("resposta", "Registro inserido");
-        }
-        catch (\Exception $e){
-            return redirect()->action(
-                [ProdutoController::class, 'index'])
-                ->with("resposta", "Erro ao inserir!");
-        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -80,7 +79,7 @@ class ProdutoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -88,27 +87,26 @@ class ProdutoController extends Controller
         $fornecedores = Fornecedor::all();
         $categorias = Categoria::all();
         $produto = Produto::findOrFail($id);
-        return view("produto.edit", compact("fornecedores", "categorias"));
+        return view("produto.edit", compact("fornecedores", "categorias", "produto"));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        try{
+        try {
             $produto = new Produto();
             $dados = $request->only($produto->getFillable());
             Produto::whereId($id)->update($dados);
-            return redirect()->action([ProdutoController::class, 'index'])
+            return redirect()->action([ProdutoController::class, "index"])
                 ->with("resposta", "Registro alterado");
-        }
-        catch (\Exception $e){
-            return redirect()->action([ProdutoController::class,"index"])
+        } catch (\Exception $e) {
+            return redirect()->action([ProdutoController::class, "index"])
                 ->with("resposta", "Erro ao alterar");
         }
     }
@@ -116,17 +114,16 @@ class ProdutoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        try{
+        try {
             Produto::destroy($id);
             return redirect()->action([ProdutoController::class, 'index'])
                 ->with("resposta", "Registro excluido!");
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             return redirect()->action([ProdutoController::class, 'index'])
                 ->with("resposta", "Erro ao excluir!");
         }

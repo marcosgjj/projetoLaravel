@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\CompraController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdutoController;
-use App\Http\Controllers\FuncionarioController;
-use App\Http\Controllers\CarrinhoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,35 +21,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 # Após feito a criação da Model e controller, a rota será feita dessa forma abaixo, evitando rotas manuais para cada comando.
-Route::resources([
-    'categoria' => CategoriaController::class
-]);
-Route::resources([
-    'fornecedor' => FornecedorController::class
-]);
-Route::resources([
-    'produto' => ProdutoController::class
-]);
-Route::resources([
-    'funcionario' => FuncionarioController::class
-]);
-Route::resources([
-    'carrinho' => CarrinhoController::class
-]);
+Route::resources(['categoria' => CategoriaController::class]);
+Route::resources(['fornecedor' => FornecedorController::class]);
+Route::resources(['produto' => ProdutoController::class]);
+Route::resources(['funcionario' => FuncionarioController::class]);
+Route::resources(['carrinho' => CarrinhoController::class]);
 
 Route::get(
     '/',
-    [HomeController::class,'index'
-]);
+    [HomeController::class, 'index']);
+
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 Route::get(
-    "/detalhe/{id}",[HomeController::class, 'detalhe']
+    "/detalhe/{id}", [HomeController::class, 'detalhe']
 );
+Route::get(
+    '/carrinho',
+    [CompraController::class, 'compras'])->name('carrinho');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/adicionar/{id}',
+    [CompraController::class, 'adicionar'])->name('adicionar');
 
+Route::get('/remover/{id}',
+    [CompraController::class, 'remover'])->name('remover');
 
+Route::get('/finalizar/}',
+    [CompraController::class, 'finalizar'])->name('finalizar');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
