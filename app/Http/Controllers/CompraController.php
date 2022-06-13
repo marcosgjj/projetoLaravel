@@ -38,6 +38,8 @@ class CompraController extends Controller
 
     public function adicionar($id)
     {
+        $count = 0;
+        $soma = 0;
         $this->verificarCarrinho();
         if ($this->carrinho == null) {
             $this->carrinho = Compra::create([
@@ -49,8 +51,10 @@ class CompraController extends Controller
                 Produto::findOrFail($id),
                 ['quantidade' => 1, 'preco' => 0]);
         }
+
         $produtos = $this->carrinho->produtos;
-        return view('compras', compact('produtos'));
+
+        return view('compras', compact('produtos', 'count', 'soma'));
     }
 
     public function remover($id)

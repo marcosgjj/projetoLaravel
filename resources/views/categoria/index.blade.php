@@ -23,7 +23,7 @@
                                 <tbody>
                                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                     <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-500 dark:text-white whitespace-nowrap">
+                                        class="px-6 py-4 font-medium truncate text-gray-500 dark:text-white whitespace-nowrap">
                                         {{$c->descricao}}
                                     </th>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-sm leading-5 text-right ">

@@ -1,5 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
@@ -8,11 +9,19 @@
                     <a href="/">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600"/>
                     </a>
+
+
                 </div>
 
+                @if(\Illuminate\Support\Facades\Auth::user()->role==="cliente")
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('carrinho')" :active="request()->routeIs('Carrinho')">
+                            {{ __('Carrinho') }}
+                        </x-nav-link>
+                    </div>
                 <!-- Navigation Links -->
                 <!-- Acesso limitado ao administrador -->
-                @if(\Illuminate\Support\Facades\Auth::user()->role==="Administrador")
+                @elseif(\Illuminate\Support\Facades\Auth::user()->role==="Administrador")
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
@@ -36,11 +45,24 @@
                             {{ __('Produto') }}
                         </x-nav-link>
                     </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('carrinho')" :active="request()->routeIs('Carrinho')">
+                            {{ __('Carrinho') }}
+                        </x-nav-link>
+                    </div>
+                @else
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('carrinho')" :active="request()->routeIs('Carrinho')">
+                            {{ __('Carrinho') }}
+                        </x-nav-link>
+                    </div>
                 @endif
             </div>
 
+
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
@@ -57,6 +79,38 @@
                             </div>
                         </button>
                     </x-slot>
+                    <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-700 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3" type="button">
+                        {{ Auth::user()->name }} <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+
+                    <!-- Dropdown menu -->
+                    <div id="dropdownInformation" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+
+                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
+                            <li>
+                                <a href="/categoria" class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">
+                                    Categorias
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/fornecedor" class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">
+                                    Fornecedores
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/produto" class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">
+                                    Produtos
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/carrinho" class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">
+                                    Carrinhos
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="py-1">
+                            <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-700 dark:hover:text-white">Log out</a>
+                        </div>
+                    </div>
 
                     <x-slot name="content">
                         <!-- Authentication -->

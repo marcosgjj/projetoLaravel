@@ -33,7 +33,7 @@
                             <x-label>Selecione o fornecedor:</x-label>
                             <select name="fornecedor_id">
                                 @foreach($fornecedores as $f)
-                                    <option value="{{$f->id}}">{{$f->razao_social}} </option>
+                                    <option value="{{$f->id}}">{{$f->nomeFantasia}} </option>
                                 @endforeach
                             </select>
                         </div>

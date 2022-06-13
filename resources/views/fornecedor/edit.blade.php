@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="mt-5">
-                            <x-button>Alterar</x-button>
+                            <x-button>Salvar</x-button>
                         </div>
                     </form>
                 </div>

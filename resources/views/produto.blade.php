@@ -12,11 +12,14 @@
     <!-- Styles -->
 </head>
 <body class="antialiased">
+
 <div
-    class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+    class="relative flex items-top justify-center min-h-screen bg-gray-700 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
     @if (Route::has('login'))
+
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            @auth
+
+                @auth
                 <a href="{{ url('/dashboard') }}"
                    class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
             @else
@@ -42,24 +45,24 @@
 
         <div class="grid grid-cols-1 gap-1">
             <!-- Início da DIV com os dados do produto -->
-            <div class="max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mr-2">
+            <div class="max-w-sm bg-gray-800 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mr-2">
                 <img class="p-8 rounded-t-lg"
                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOCYtilKCswkU3Ug52lbM_mqhTrjlgjdywi6BPRR8cnOQDGFb7QRJjjV7c-VobcwTdlLU&usqp=CAU"
                      alt="product image"/>
                 <div class="px-5 pb-5">
-                    <h3 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white mb-5">
+                    <h3 class="text-xl truncate font-semibold tracking-tight text-white dark:text-white mb-5">
                         {{$produto->nome}}
                     </h3>
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white mb-5">
+                    <h5 class="text-xl font-semibold truncate tracking-tight text-white dark:text-white mb-5">
                         {{$produto->categoria->descricao}}
                     </h5>
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white mb-5">
+                    <h5 class="text-xl font-semibold truncate tracking-tight text-white dark:text-white mb-5">
                         {{--                            {{$produto->fornecedor->razao_social}}--}}
                         {{$produto->fornecedor->nomeFantasia}}
                     </h5>
                     <div class="flex justify-between items-center">
                         <span
-                            class="text-2xl font-bold text-gray-900 dark:text-white mr-2 size-dynamic">{{"R$ "}}{{$produto->preco}}</span>
+                            class="text-2xl font-bold text-white dark:text-white mr-2 size-dynamic">{{"R$ "}}{{$produto->preco}}</span>
                         <a href="{{route('adicionar',$produto->id)}}"
                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Comprar</a>
                     </div>

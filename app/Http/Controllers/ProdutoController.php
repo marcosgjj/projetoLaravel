@@ -42,7 +42,6 @@ class ProdutoController extends Controller
             $produto = new Produto();
             $dados = $request->only($produto->getFillable());
             Produto::create($dados);
-            echo "Inserido com sucesso!";
             return redirect()->action([ProdutoController::class, 'index'])
                 ->with("resposta", "Registro inserido");
         } catch (\Exception $e) {
