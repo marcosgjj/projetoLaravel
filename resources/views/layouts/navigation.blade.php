@@ -50,6 +50,11 @@
                             {{ __('Carrinho') }}
                         </x-nav-link>
                     </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <a class="mt-4 py-1" href="/relatorio">
+                            Relatorio
+                        </a>
+                    </div>
                 @else
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('carrinho')" :active="request()->routeIs('Carrinho')">
@@ -102,8 +107,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/carrinho" class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">
-                                    Carrinhos
+                                <a href="/relatorio" class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">
+                                    Relatorios
                                 </a>
                             </li>
                         </ul>

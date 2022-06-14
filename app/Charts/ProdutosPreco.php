@@ -4,14 +4,16 @@ declare(strict_types = 1);
 
 namespace App\Charts;
 
+use App\Models\Compra;
 use App\Models\Produto;
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
 
-class Graficos extends BaseChart
+class ProdutosPreco extends BaseChart
 {
-    public ?string $name = 'grafico1';
+    public ?string $name = 'ProdutosPreco';
+
 
     public ?array $middlewares = ['auth'];
 
@@ -22,10 +24,11 @@ class Graficos extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-        $nome_produtos = Produto::orderBy('nome')->all();
-        $valores = Produto::orderBy('nome')->all();
+        $produtos = Produto::pluck('nome')->toArray();
+        $precos = Produto::pluck('preco')->toArray();
         return Chartisan::build()
-            ->labels($nome_produtos)
-            ->dataset('Valores', $valores);
+            ->labels($produtos)
+            ->dataset('Valores', $precos);
     }
+
 }

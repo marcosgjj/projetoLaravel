@@ -33,7 +33,7 @@ class CompraController extends Controller
         $this->carrinho = Compra::where([
             'user_id' => Auth::id(),
             'status' => 'aberto'
-        ])->first();
+        ])->get()->first();
     }
 
     public function adicionar($id)

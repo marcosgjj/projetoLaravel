@@ -50,14 +50,14 @@
                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOCYtilKCswkU3Ug52lbM_mqhTrjlgjdywi6BPRR8cnOQDGFb7QRJjjV7c-VobcwTdlLU&usqp=CAU"
                      alt="product image"/>
                 <div class="px-5 pb-5">
-                    <h3 class="text-xl truncate font-semibold tracking-tight text-white dark:text-white mb-5">
+                    <h3 class="text-xl font-semibold truncate tracking-tight text-white dark:text-white mb-5">
                         {{$produto->nome}}
                     </h3>
                     <h5 class="text-xl font-semibold truncate tracking-tight text-white dark:text-white mb-5">
                         {{$produto->categoria->descricao}}
                     </h5>
                     <h5 class="text-xl font-semibold truncate tracking-tight text-white dark:text-white mb-5">
-                        {{--                            {{$produto->fornecedor->razao_social}}--}}
+
                         {{$produto->fornecedor->nomeFantasia}}
                     </h5>
                     <div class="flex justify-between items-center">

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Charts\Graficos;
+use App\Charts\ProdutosPreco;
 use ConsoleTVs\Charts\Registrar;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -27,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(Registrar $charts)
     {
         Schema::defaultStringLength(191);
-        $charts->register([Graficos::class]);
+        $charts->register([ProdutosPreco::class]);
     }
 }

@@ -57,8 +57,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/carrinho" class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">
-                                        Carrinhos
+                                    <a href="/relatorio" class="px-4 py-2 block text-gray-100 hover:bg-gray-800 no-underline hover:no-underline">
+                                        Relatorios
                                     </a>
                                 </li>
                             </ul>
@@ -103,11 +103,11 @@
                 <div class="max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mt-2 mr-2">
                     <img class="p-8 rounded-t-lg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOCYtilKCswkU3Ug52lbM_mqhTrjlgjdywi6BPRR8cnOQDGFb7QRJjjV7c-VobcwTdlLU&usqp=CAU" alt="product image" />
                     <div class="px-5 pb-5">
-                        <h3 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white mb-5">
+                        <h3 class="text-xl font-semibold truncate tracking-tight text-gray-900 dark:text-white mb-5">
                             {{$p->nome}}
                         </h3>
                         <div class="flex justify-between items-center">
-                            <span class="text-3l font-bold text-gray-900 dark:text-white ">R$ {{$p->preco}}</span>
+                            <span class="text-3l font-bold truncate text-gray-900 dark:text-white ">R$ {{$p->preco}}</span>
                             <a href="/detalhe/{{$p->id}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Comprar</a>
                         </div>
                     </div>
