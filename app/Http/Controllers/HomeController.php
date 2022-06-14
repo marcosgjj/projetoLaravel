@@ -4,7 +4,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Produto;
 
 class HomeController extends Controller
 {
@@ -12,11 +12,15 @@ class HomeController extends Controller
     // In /routes/web.php add /index
     public function index()
     {
-        return view("welcome");
+        $produtos = Produto::all();
+
+        return view("welcome", compact("produtos"));
     }
-    public function primeiroExercicio()
+
+    public function detalhe($id)
     {
-        return view("exercicio1");
+        $produto = Produto::findOrFail($id);
+        return view("produto", compact('produto'));
     }
 
 }
